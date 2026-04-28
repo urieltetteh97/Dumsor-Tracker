@@ -1,0 +1,6 @@
+{
+  "name": "Dumsor Tracker Ghana",
+  "description": "A comprehensive app to track scheduled power outages (Dumsor) in Ghana, view schedules by location, receive alerts, and report unscheduled outages.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["geolocation", "notifications"]
+}

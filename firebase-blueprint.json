@@ -1,0 +1,47 @@
+{
+  "entities": {
+    "Report": {
+      "title": "Outage Report",
+      "description": "User submitted report of an unscheduled power outage.",
+      "type": "object",
+      "properties": {
+        "location": { "type": "string" },
+        "region": { "type": "string" },
+        "type": { "type": "string", "enum": ["OUTAGE", "UNEXPECTED_ON"] },
+        "description": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "reporterId": { "type": "string" },
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "lat": { "type": "number" },
+            "lng": { "type": "number" }
+          }
+        }
+      },
+      "required": ["location", "region", "timestamp", "reporterId"]
+    },
+    "UserPreference": {
+      "title": "User Preference",
+      "description": "User's saved location and notification preferences.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "region": { "type": "string" },
+        "group": { "type": "string", "enum": ["A", "B", "C"] },
+        "notificationsEnabled": { "type": "boolean" }
+      },
+      "required": ["userId", "region", "group"]
+    }
+  },
+  "firestore": {
+    "reports/{reportId}": {
+      "schema": "Report",
+      "description": "Public reports of outages."
+    },
+    "userPreferences/{userId}": {
+      "schema": "UserPreference",
+      "description": "Private user preferences."
+    }
+  }
+}
